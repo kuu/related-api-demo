@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="title" content="Discovery 1.5 Demo">
+    <meta name="description" content="Discovery 1.5 Demo">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Discovery 1.5 Demo</title>
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons|Montserrat">
+    <link rel="stylesheet" href="//code.getmdl.io/1.3.0/material.min.css">
+    <link rel="stylesheet" href="/styles/app.css">
+    <script defer src="//code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="//player.ooyala.com/static/v4/stable/{{version}}/core.min.js"></script>
+    <script src="//player.ooyala.com/static/v4/stable/{{version}}/video-plugin/main_html5.min.js"></script>
+    <script src="//player.ooyala.com/static/v4/stable/{{version}}/video-plugin/bit_wrapper.min.js"></script>
+    <script src="//player.ooyala.com/static/v4/stable/{{version}}/video-plugin/osmf_flash.min.js"></script>
+    <script src="//player.ooyala.com/static/v4/stable/{{version}}/skin-plugin/html5-skin.min.js"></script>
+    <link rel="stylesheet" href="//player.ooyala.com/static/v4/stable/{{version}}/skin-plugin/html5-skin.min.css">
+  </head>
+  <body>
+    <div class="mdl-layout__container" id="myoo-app">
+      <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header has-drawer">
+        <header class="myoo-header mdl-layout__header mdl-layout__header--waterfall">
+          <div class="mdl-layout__header-row">
+            <a href="https://www.ooyala.com" target="_blank">
+              <span class="myoo-header__title mdl-layout-title">
+                <p class="myoo-header__title--logo" />
+              </span>
+            </a>
+            <div class="mdl-layout-spacer"></div>
+            <div class="myoo-navigation-container">
+              <div class="myoo-navigation mdl-navigation">
+                <a class="mdl-navigation__link" href="http://support.ooyala.com">
+                  <span class="myoo-sprite__search">search</span>
+                  <span class="myoo-display__sp--none">Serch</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </header>
+        <div class="myoo-drawer mdl-layout__drawer">
+          <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="/">Home</a>
+            <a class="mdl-navigation__link" href="https://backlot.ooyala.com" target="_blank">Ooyala Backlot</a>
+          </nav>
+        </div>
+
+        <main class="mdl-layout__content">
+          <div class="myoo-section mdl-typography--text-center">
+            <div class="myoo-player-section">
+              <div class="myoo-player-container">
+                <div id="container" class="myoo-player"></div>
+              </div>
+            </div>
+            <div class="myoo-section">
+              <h2>Related Videos</h2>
+              <div class="myoo-grid myoo-grid--scrollable">
+                  {% for asset in related %}
+                  <div class="myoo-cell--small">
+                    <a href="{{asset.embed_code}}">
+                      <img class="myoo-cell__image--small" src="{{asset.preview_image_url}}" alt="{{asset.name}}" />
+                    </a>
+                  </div>
+                  {% else %}
+                    <li>There's no related vodeo...</li>
+                  {% endfor %}
+              </div>
+            </div>
+          </div>
+          <footer class="mdl-mini-footer">
+            <div class="mdl-mini-footer--left-section">
+              <ul class="mdl-mini-footer--link-list">
+                <li><a href="http://support.ooyala.com/developers/documentation/concepts/pbv4_about.html">Player V4</a></li>
+                <li><a href="http://support.ooyala.com/developers/documentation/concepts/book_discovery_dg.html">Discovery</a></li>
+              </ul>
+              <div class="mdl-logo">© 2017 OOYALA inc.</div>
+            </div>
+          </footer>
+        </main>
+      </div>
+    </div>
+    <script>
+    var playerParam = {
+      pcode: '{{pcode}}',
+      playerBrandingId: '{{playerBrandingId}}',
+      platform: 'html5',
+      skin: {
+        // config contains the configuration setting for player skin. Change this path to your local config when necessary.
+        config: '//player.ooyala.com/static/v4/stable/{{version}}/skin-plugin/skin.json'
+      },
+        // Add other embedded player parameters here.
+      embedToken: '{{embedToken}}'
+    };
+    // Surround everything with OO.ready to make sure the script has loaded and initialized.
+    OO.ready(function() {
+      OO.Player.create('container', '{{asset.embed_code}}', playerParam);
+    });
+    </script>
+  </body>
+</html>
