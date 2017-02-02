@@ -24,7 +24,8 @@ $ vi config/default.json
   },
   "api": {
     "key": "Your Ooyala API Key",
-    "secret": "Your Ooyala API Secret"
+    "secret": "Your Ooyala API Secret",
+    "accountSecret": "Your Account Secret Key (for using Account Token API)"
   },
   "player": {
     "pcode": "Provider Code (Left part of the api key)",

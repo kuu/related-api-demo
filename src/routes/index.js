@@ -19,7 +19,7 @@ function renderAsset(res, asset) {
 
 function handleRequest(res, embedCode) {
   if (embedCode) {
-    if (utils.hasProperty(cache, embedCode)) {
+    if (utils.hasOwnProp(cache, embedCode)) {
       const asset = cache[embedCode];
       print(`Retrieved asset "${asset.name}" from cache`);
       return renderAsset(res, asset);
@@ -37,7 +37,7 @@ function handleRequest(res, embedCode) {
     api.getTrends(1).then(([asset]) => {
       print(`The current most trending asset is "${asset.name}"`);
       embedCode = asset.embed_code;
-      if (!utils.hasProperty(cache, embedCode)) {
+      if (!utils.hasOwnProp(cache, embedCode)) {
         cache[embedCode] = asset;
       }
       renderAsset(res, asset);

@@ -1,5 +1,5 @@
 module.exports = {
-  hasProperty(obj, propName) {
+  hasOwnProp(obj, propName) {
     return Object.prototype.hasOwnProperty.call(obj, propName);
   }
 };
