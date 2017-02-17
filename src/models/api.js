@@ -27,7 +27,7 @@ module.exports = {
     });
   },
   getRelated(embedCode, num = 5, filters = {}) {
-    return api.get('/personalization/v1/similar', {asset_id: embedCode, limit: num, filters: buildFilters(filters)}, {accountId: config.api.key, secure: true, subdomain: 'player'})
+    return api.get('/personalization/v1/related', {asset_id: embedCode, limit: num, filters: buildFilters(filters)}, {accountId: config.api.key, secure: true, subdomain: 'player'})
     .then(response => {
       return response.payload.data;
     });  },
